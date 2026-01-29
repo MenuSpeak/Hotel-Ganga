@@ -751,7 +751,7 @@
       font-size: 16px;
     }
 
-    /* Table Number Section */
+    /* Company Name Section (previously Table Number Section) */
     .table-section {
       margin: 20px 0;
       padding: 20px;
@@ -1107,19 +1107,20 @@
         <button class="close-cart" id="closeCart">&times;</button>
       </div>
       
-      <!-- Table Number Section -->
+      <!-- Company Name Section (previously Table Number Section) -->
       <div class="table-section">
         <h4 class="table-title">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M9 12v12M15 12v12M5 12l-2 9h18l-2-9M5 12V8c0-1.105.895-2 2-2h10c1.105 0 2 .895 2 2v4"/>
-            <circle cx="12" cy="6" r="2"/>
+            <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path>
+            <polyline points="17 21 17 13 7 13 7 21"></polyline>
+            <polyline points="7 3 7 8 15 8"></polyline>
           </svg>
-          Table Information
+          Company Information
         </h4>
         
         <div class="form-group">
-          <label class="form-label" for="tableNumber">Table Number *</label>
-          <input type="text" id="tableNumber" class="form-input" placeholder="Enter your table number (e.g., Table 5, Booth 2)" required />
+          <label class="form-label" for="tableNumber">Company Name *</label>
+          <input type="text" id="tableNumber" class="form-input" placeholder="Enter your company name" required />
         </div>
       </div>
       
@@ -1198,20 +1199,21 @@
       let summaryHTML = '';
       let showSummary = false;
       
-      const tableNumber = document.getElementById('tableNumber').value.trim();
+      const companyName = document.getElementById('tableNumber').value.trim();
       
-      if (tableNumber) {
+      if (companyName) {
         showSummary = true;
         summaryHTML = `
           <div class="summary-title">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M9 12v12M15 12v12M5 12l-2 9h18l-2-9M5 12V8c0-1.105.895-2 2-2h10c1.105 0 2 .895 2 2v4"/>
-              <circle cx="12" cy="6" r="2"/>
+              <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path>
+              <polyline points="17 21 17 13 7 13 7 21"></polyline>
+              <polyline points="7 3 7 8 15 8"></polyline>
             </svg>
-            Table Information
+            Company Information
           </div>
           <div class="summary-details">
-            <div><strong>Table Number:</strong> ${tableNumber}</div>
+            <div><strong>Company Name:</strong> ${companyName}</div>
           </div>
         `;
       }
@@ -1336,25 +1338,25 @@
       updateCart();
     });
 
-    // WhatsApp order function with customer details
+    // WhatsApp order function with company details
     whatsappOrder.addEventListener('click', () => {
       if (cart.length === 0) {
         alert('Your cart is empty!');
         return;
       }
       
-      // Validate table number
-      const tableNumber = document.getElementById('tableNumber').value.trim();
+      // Validate company name
+      const companyName = document.getElementById('tableNumber').value.trim();
       
-      if (!tableNumber) {
-        alert('Please enter your table number');
+      if (!companyName) {
+        alert('Please enter your company name');
         return;
       }
       
       let message = `Hello! I would like to place an order:\n\n`;
       
-      // Add table information
-      message += `**Table Number:** ${tableNumber}\n\n`;
+      // Add company information
+      message += `**Company Name:** ${companyName}\n\n`;
       
       message += `**Order Details:**\n`;
       
@@ -1452,7 +1454,7 @@
         searchItems(e.target.value);
       });
       
-      // Update details summary when table number changes
+      // Update details summary when company name changes
       document.getElementById('tableNumber').addEventListener('input', updateCustomerDetailsSummary);
     });
 
@@ -1462,5 +1464,4 @@
     window.updateQuantity = updateQuantity;
   </script>
 </body>
-
 </html>
